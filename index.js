@@ -36,11 +36,17 @@ for (let i = 0; i < bookletsCount; i++) {
     }
 
     var bookletPageNumbers = [];
-    for (let x = 1, y = bookletPages; x < y; x = x + 2, y = y - 2) {
+    for (let x = 1, y = bookletPages; x <= y; x = x + 2, y = y - 2) {
         bookletPageNumbers.push(' ' + (pagesPrinted + y));
-        bookletPageNumbers.push(pagesPrinted + x);
-        bookletPageNumbers.push(pagesPrinted + x + 1);
-        bookletPageNumbers.push(pagesPrinted + y - 1);
+        if (y > x) {
+            bookletPageNumbers.push(pagesPrinted + x);
+        }
+        if (y > x + 1) {
+            bookletPageNumbers.push(pagesPrinted + x + 1);
+        }
+        if (y - 1 > x + 1) {
+            bookletPageNumbers.push(pagesPrinted + y - 1);
+        }
     }
     all += bookletPageNumbers.join() + "\n";
 
@@ -49,5 +55,5 @@ for (let i = 0; i < bookletsCount; i++) {
         console.log();
     }
 }
-
+console.log('\nALL PAGES:');
 console.log(all);
