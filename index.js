@@ -48,10 +48,16 @@ for (let i = 0; i < bookletsCount; i++) {
             bookletPageNumbers.push(pagesPrinted + y - 1);
         }
     }
-    all += bookletPageNumbers.join() + "\n";
+
+    let additionalPages = '';
+    if (bookletPages % 4 !== 0) {
+        additionalPages = '  ---- add ' + (4 - bookletPages % 4) + ' blank page(s) at the end of document'
+    }
+
+    all += bookletPageNumbers.join() + additionalPages + "\n";
 
     if (verbose) {
-        console.log(bookletPageNumbers.join());
+        console.log(bookletPageNumbers.join() + additionalPages);
         console.log();
     }
 }
